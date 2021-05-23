@@ -1,0 +1,15 @@
+﻿@model List<BikeStore.Models.ItemCategory>
+@foreach (var item in Model)
+{
+    <li class="nav-item dropdown">
+        <a class="nav-link  text-white dropdown-toggle" href="#" id="@string.Format("#dropdown0{0}",item.ItemCategoryID)"
+           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@item.ItemCategoryName</a>
+        <div class="dropdown-menu" aria-labelledby="@string.Format("#dropdown0{0}",item.ItemCategoryID)">
+            @foreach (var itm in item.CategorySubCategories)
+            {
+                <a class="dropdown-item" asp-area="" asp-controller="Home"
+                   asp-action="ViewItemBySubCategory" asp-route-id="@itm.ItemSubCategoryID">@itm.ItemSubCategoryName</a>
+            }
+        </div>
+    </li>
+}

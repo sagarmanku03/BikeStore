@@ -1,0 +1,58 @@
+﻿@model BikeStore.Models.ItemInfo
+
+@{
+    ViewData["Title"] = "Delete";
+}
+<section>
+    <img src="~/images/admin.png" class="img-fluid" />
+</section>
+<div class="container mb-3">
+    <div class="text-center">
+        <h1 class="display-4">Item Info Operations</h1>
+        <p>Delete Item Info</p>
+    </div>
+    <p>
+        <a asp-action="Index" class="btn btn-dark">Back To List</a>
+    </p>
+    <hr />
+    <div class="row mb-3">
+        <div class="col-md-8">
+            <h1>@Model.ItemName</h1>
+            <h2>$ @Model.ItemPrice</h2>
+            <div id="accordion" class="mb-3">
+
+                <div class="card">
+                    <div class="card-header">
+                        <a class="card-link" data-toggle="collapse" href="#collapse1">
+                            Description
+                        </a>
+                    </div>
+                    <div id="collapse1" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                            @Model.ItemDescription
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <a class="card-link" data-toggle="collapse" href="#collapse2">
+                            Feature
+                        </a>
+                    </div>
+                    <div id="collapse2" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                            @Model.ItemFeature
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="ItemID" />
+                <input type="submit" value="Delete" class="btn btn-danger" />
+            </form>
+        </div>
+        <div class="card col-md-4">
+            <img class="card-img-top" src="~/items/@Model.ItemID@Model.Extension" alt="@Model.ItemName" style="width:100%">
+        </div>
+    </div>
+</div>

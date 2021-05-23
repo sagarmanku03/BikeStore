@@ -1,0 +1,56 @@
+﻿@model BikeStore.Models.ItemSubCategory
+
+@{
+    ViewData["Title"] = "Create";
+}
+<section>
+    <img src="~/images/admin.png" class="img-fluid" />
+</section>
+<div class="container">
+    <div class="text-center">
+        <h1 class="display-4">Item Sub Category Operations</h1>
+        <p>Add New Item Sub Category</p>
+    </div>
+    <p>
+        <a asp-action="Index" class="btn btn-dark">Back To List</a>
+    </p>
+    <hr />
+    <div class="row">
+        <div class="card col-md-4 border-0">
+            <img class="card-img-top img-fluid" src="~/images/save.png" alt="" style="width:100%">
+        </div>
+        <div class="col-md-8">
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="ItemCategoryID" class="control-label"></label>
+                    <select asp-for="ItemCategoryID" class="form-control" asp-items="ViewBag.ItemCategoryID"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ItemSubCategoryName" class="control-label"></label>
+                    <input asp-for="ItemSubCategoryName" class="form-control" />
+                    <span asp-validation-for="ItemSubCategoryName" class="text-danger"></span>
+                </div>
+
+                <div class="custom-file mb-3">
+                    <input asp-for="File.FormFile" type="file" class="custom-file-input" id="customFile">
+                    <label asp-for="File.FormFile" class="custom-file-label">Choose Any Image File</label>
+                    <span asp-validation-for="File.FormFile" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Add New Item Sub Category" class="btn btn-dark" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+}

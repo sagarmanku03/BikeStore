@@ -1,0 +1,46 @@
+﻿@model BikeStore.Models.ItemSubCategory
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<section>
+    <img src="~/images/admin.png" class="img-fluid" />
+</section>
+<div class="container">
+    <div class="text-center">
+        <h1 class="display-4">Item Sub Category Operations</h1>
+        <p>Edit Item Sub Category</p>
+    </div>
+    <p>
+        <a asp-action="Index" class="btn btn-dark">Back To List</a>
+    </p>
+    <hr />
+    <div class="row">
+        <div class="card col-md-4 border-0">
+            <img class="card-img-top img-fluid" src="~/images/check.png" alt="" style="width:100%">
+        </div>
+        <div class="col-md-8">
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="ItemSubCategoryID" />
+                <input type="hidden" asp-for="Extension" />
+                <div class="form-group">
+                    <label asp-for="ItemSubCategoryName" class="control-label"></label>
+                    <input asp-for="ItemSubCategoryName" class="form-control" />
+                    <span asp-validation-for="ItemSubCategoryName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ItemCategoryID" class="control-label"></label>
+                    <select asp-for="ItemCategoryID" class="form-control" asp-items="ViewBag.ItemCategoryID"></select>
+                    <span asp-validation-for="ItemCategoryID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save Item Sub Category Details" class="btn btn-dark" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

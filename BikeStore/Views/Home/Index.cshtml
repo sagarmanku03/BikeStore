@@ -1,0 +1,25 @@
+﻿@model IEnumerable<BikeStore.Models.ItemSubCategory>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<section>
+    <img src="~/images/home.jpg" class="img-fluid" />
+</section>
+<div class="container">
+    <div class="text-center">
+        <h1 class="display-4">Welcome To Bike Store</h1>
+    </div>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+        <div class="col-md-4 mb-3">
+            <div class="card w-100">
+                <img class="card-img-top" style="height:350px" src="~/subs/@item.ItemSubCategoryID@item.Extension" alt="Card image">
+                <div class="card-img-overlay" style="display:flex;align-items:center;justify-items:center">
+                    <a class="btn btn-dark btn-block" asp-action="ViewItemBySubCategory" asp-route-id="@item.ItemSubCategoryID">@item.ItemSubCategoryName</a>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>
